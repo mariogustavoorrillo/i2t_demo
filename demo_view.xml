@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+       <template id="i2t_report_move_document" inherit_id="account.report_invoice_document">
+                <xpath expr="//p[@name='comment']" position="before">
+                        <p>Argentina 4 - Bolivia 0</p>
+                </xpath>
+                <xpath expr="//p[@name='comment']" position="after">
+                        <h3 style="text-decoration: underline;">Argentina 4 - Bolivia 0</h3>
+                </xpath>
+                <xpath expr="//div[@id='informations']/div[@name='due_date']/strong" position="replace">
+                        <strong>Vencimiento Santafesino</strong>
+                </xpath>
+                <xpath expr="//table[@name='invoice_line_table']/thead/tr/th[@name='th_subtotal']" position="after">
+                        <th>Cuenta Contable</th>
+                </xpath>
+                <xpath expr="//td[@class='text-right o_price_total']" position="after">
+                        <div t-if="line.account_id">
+                                <td>
+                                        <span t-field="line.account_id.display_name"></span>
+                                </td>
+                        </div>
+                </xpath>
+                <xpath expr="//p[@t-if='o.narration']" position="after">
+                        <p>Esta es otra linea mas usando t-if en el xpath</p>
+                </xpath>
+                <xpath expr="//div[@class='page']/h2/span[6]" position="after">
+                        <span t-if="o.move_type == 'in_invoice'">Super Factura Proveedor</span>
+                 </xpath>
+   </template>
+
+
+</odoo>
